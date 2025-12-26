@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/Blood-Bank/static/css/main.4c1799a0.css",
-    "main.js": "/Blood-Bank/static/js/main.d6180f44.js",
+    "main.js": "/Blood-Bank/static/js/main.c9836317.js",
     "static/media/bdrop.png": "/Blood-Bank/static/media/bdrop.aecbfa45eb3b6c0aedd1.png",
     "index.html": "/Blood-Bank/index.html",
     "main.4c1799a0.css.map": "/Blood-Bank/static/css/main.4c1799a0.css.map",
-    "main.d6180f44.js.map": "/Blood-Bank/static/js/main.d6180f44.js.map"
+    "main.c9836317.js.map": "/Blood-Bank/static/js/main.c9836317.js.map"
   },
   "entrypoints": [
     "static/css/main.4c1799a0.css",
-    "static/js/main.d6180f44.js"
+    "static/js/main.c9836317.js"
   ]
 }
