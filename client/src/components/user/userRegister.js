@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
 
-//css
+// CSS
 import "../../assets/css/UserRegister.css";
 
 const UserRegister = () => {
@@ -15,107 +15,118 @@ const UserRegister = () => {
   const [userGender, setuserGender] = useState("");
   const [userBloodGroup, setuserBloodGroup] = useState("");
 
-  const submituserRegister = () => {
-    const regurl = "http://localhost:3001/reg/usr";
-    Axios.post(regurl, {
-      userFName: userFName,
-      userAge: userAge,
-      userGender: userGender,
-      userBloodGroup: userBloodGroup,
-      userPhone: userPhone,
-      userMail: userMail,
-      userPlace: userPlace,
-      userUserName: userUserName,
-      userPassword: userPassword,
-    }).then((response) => {
+  // ✅ FORM SUBMIT HANDLER
+  const submituserRegister = async (e) => {
+    e.preventDefault(); // 🔥 page reload stop
+
+    try {
+      const response = await Axios.post(
+        "http://localhost:5003/reg/usr", // 👉 deploy ke baad yahin URL change hoga
+        {
+          userFName,
+          userAge,
+          userGender,
+          userBloodGroup,
+          userPhone,
+          userMail,
+          userPlace,
+          userUserName,
+          userPassword,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
       alert(response.data.message);
-    });
+    } catch (error) {
+      console.error(error);
+      alert("Registration failed!");
+    }
   };
 
   return (
     <div className="user-register">
       <h2>DONAR REGISTER</h2>
-      <form className="userReg-form">
+
+      {/* ✅ onSubmit FORM pe */}
+      <form className="userReg-form" onSubmit={submituserRegister}>
         <input
-          name="userFName"
-          type="text "
-          placeholder="Full Name"
-          onChange={(e) => {
-            setuserFName(e.target.value);
-          }}
-          required
-        />
-        <input
-          name="userAge"
-          type="text "
-          placeholder="Age"
-          onChange={(e) => {
-            setuserAge(e.target.value);
-          }}
-          required
-        />
-        <input
-          name="userGender"
-          type="text "
-          placeholder="Gender(M/F)"
-          onChange={(e) => {
-            setuserGender(e.target.value);
-          }}
-          required
-        />
-        <input
-          name="userBloodGroup"
-          type="text "
-          placeholder="Blood Group"
-          onChange={(e) => {
-            setuserBloodGroup(e.target.value);
-          }}
-          required
-        />
-        <input
-          name="emailId"
           type="text"
-          placeholder="Email Place"
-          onChange={(e) => {
-            setuserMail(e.target.value);
-          }}
+          placeholder="Full Name"
+          value={userFName}
+          onChange={(e) => setuserFName(e.target.value)}
           required
         />
+
         <input
-          name="userPhone"
+          type="number"
+          placeholder="Age"
+          value={userAge}
+          onChange={(e) => setuserAge(e.target.value)}
+          required
+        />
+
+        <input
+          type="text"
+          placeholder="Gender (M/F)"
+          value={userGender}
+          onChange={(e) => setuserGender(e.target.value)}
+          required
+        />
+
+        <input
+          type="text"
+          placeholder="Blood Group"
+          value={userBloodGroup}
+          onChange={(e) => setuserBloodGroup(e.target.value)}
+          required
+        />
+
+        <input
+          type="email"
+          placeholder="Email"
+          value={userMail}
+          onChange={(e) => setuserMail(e.target.value)}
+          required
+        />
+
+        <input
           type="number"
           placeholder="Phone Number"
-          onChange={(e) => {
-            setuserPhone(e.target.value);
-          }}
+          value={userPhone}
+          onChange={(e) => setuserPhone(e.target.value)}
           required
         />
+
         <input
-          name="userPlace"
-          type="text "
+          type="text"
           placeholder="Place"
-          onChange={(e) => {
-            setuserPlace(e.target.value);
-          }}
+          value={userPlace}
+          onChange={(e) => setuserPlace(e.target.value)}
           required
         />
+
         <input
-          name="username"
-          type="text "
+          type="text"
           placeholder="User Name"
-          onChange={(e) => {
-            setuserUsername(e.target.value);
-          }}
+          value={userUserName}
+          onChange={(e) => setuserUsername(e.target.value)}
+          required
         />
+
         <input
-          name="password"
-          type="text "
+          type="password"
           placeholder="Password"
-          onChange={(e) => {
-            setuserPassword(e.target.value);
-          }}
+          value={userPassword}
+          onChange={(e) => setuserPassword(e.target.value)}
+          required
         />
-        <button onClick={submituserRegister}>REGISTER</button>
+
+        {/* ✅ button type submit */}
+        <button type="submit">REGISTER</button>
       </form>
     </div>
   );
